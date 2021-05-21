@@ -10,7 +10,7 @@ namespace ClassProject.Application.Interface
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IAsyncEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
         Task<T> GetByIdAsync(int Id);
         void Update(T entity);

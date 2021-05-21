@@ -1,6 +1,7 @@
 ﻿using ClassProject.Application.Interface;
 using ClassProject.Domain.Entities;
 using ClassProject.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace ClassProject.Application.Repository
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly ApplicationDbContext _context;
+        private readonly DbSet<T> entity;
 
         public Repository(ApplicationDbContext context)
         {
             _context = context;
+            entity = _context.Set<T>();
         }
 
         public void Delete(T entity)
@@ -26,22 +29,22 @@ namespace ClassProject.Application.Repository
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await entity.Where(predicate).ToListAsync();
         }
-
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IAsyncEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var result = entity.AsAsyncEnumerable();
+            return await Task.FromResult(result);
         }
 
         public async Task<T> GetByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await entity.FirstOrDefaultAsync(x => x.Id == Id);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

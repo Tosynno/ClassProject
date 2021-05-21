@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog" Version="4.7.10" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ClassProject.Domain\ClassProject.Domain.csproj" />
     <ProjectReference Include="..\ClassProject.Infrastructure\ClassProject.Infrastructure.csproj" />
   </ItemGroup>
