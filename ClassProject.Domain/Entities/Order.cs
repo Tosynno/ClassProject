@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClassProject.Domain.Entities
 {
-    public class Order 
+    public class Order : BaseEntity
     {
-        public int Id { get; set; }
         public double ProductPrice { get; set; }
         public double CurrentPrice { get; set; }
         public int NumberofItems { get; set; }

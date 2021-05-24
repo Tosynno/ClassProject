@@ -17,6 +17,7 @@ namespace ClassProject.Presentation.Extensions
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(config.GetConnectionString("")));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IProductRepo, ProductRepo>();
             return services;
         }
     }

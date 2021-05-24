@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClassProject.Domain.Entities
 {
-    public class Products 
+    public class Products : BaseEntity
     {
-        public int Id { get; set; }
+       
         public string ProductName { get; set; }
         public byte[] ImageUrl { get; set; }
         public string Description { get; set; }
